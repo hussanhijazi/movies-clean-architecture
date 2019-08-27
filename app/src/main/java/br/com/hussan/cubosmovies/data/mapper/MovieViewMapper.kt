@@ -7,7 +7,8 @@ class MovieViewMapper : EntityViewMapper<MovieView, Movie> {
     override fun mapToView(type: Movie): MovieView {
         return MovieView(
             type.id,
-            type.name
+            type.title,
+            type.posterPath
         )
     }
 }

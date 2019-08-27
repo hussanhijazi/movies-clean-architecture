@@ -45,7 +45,8 @@ dependencies {
 
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+    
     implementation "androidx.cardview:cardview:$cardViewVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 

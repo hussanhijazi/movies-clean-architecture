@@ -1,6 +1,7 @@
 package br.com.hussan.cubosmovies.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,19 @@ class ListMoviesFragment : Fragment() {
     private val compositeDisposable = CompositeDisposable()
     private val movieAdapter by lazy { MoviesAdapter(::goToDetails) }
 
+    private val genre by lazy {
+        arguments?.getInt(GENRE)
+    }
+
+    companion object {
+        val GENRE = "GENRE"
+        fun newInstance(genre: Int) = ListMoviesFragment().apply {
+            arguments = Bundle().apply {
+                putInt(GENRE, genre)
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +56,7 @@ class ListMoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerViewProducts()
         setupSwipeRefresh()
         getMovies(1)
@@ -57,7 +72,7 @@ class ListMoviesFragment : Fragment() {
     }
 
     private fun getMovies(page: Int) {
-        viewModelList.getMovies(28, page)
+        viewModelList.getMovies(genre ?: return, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading(true) }
@@ -68,6 +83,8 @@ class ListMoviesFragment : Fragment() {
     }
 
     private fun showProducts(items: List<MovieView>) {
+        Log.d("h2", items.toString())
+
         if (items.isNotEmpty()) {
             movieAdapter.addItems(items)
             showRecyclerViewProducts()
@@ -82,6 +99,7 @@ class ListMoviesFragment : Fragment() {
     }
 
     private fun showError(error: Throwable) {
+        Log.d("h2", error.message)
     }
 
     private fun showLoading(show: Boolean) {

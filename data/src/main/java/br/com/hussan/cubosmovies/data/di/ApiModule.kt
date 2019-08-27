@@ -1,6 +1,8 @@
 package br.com.hussan.cubosmovies.data.di
 
 import br.com.hussan.cubosmovies.data.AppApi
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -62,7 +64,13 @@ private inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url:
     val retrofit = Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(
+            GsonConverterFactory.create(
+                GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create()
+            )
+        )
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
     return retrofit.create(T::class.java)

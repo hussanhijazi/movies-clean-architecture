@@ -10,7 +10,7 @@ class MovieRepository(
     private val cache: MovieCache
 ) : MovieDatasource {
     override fun getMovies(genre: Int, page: Int): Single<List<Movie>> {
-        return api.getMovies(genre, page)
+        return api.getMovies(genre, page).map { it.results }
     }
 }
 

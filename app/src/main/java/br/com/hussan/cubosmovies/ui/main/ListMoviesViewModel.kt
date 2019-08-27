@@ -1,5 +1,6 @@
 package br.com.hussan.cubosmovies.ui.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import br.com.hussan.cubosmovies.data.mapper.MovieViewMapper
 import br.com.hussan.cubosmovies.data.model.MovieView
@@ -13,8 +14,8 @@ class ListMoviesViewModel(
 
     fun getMovies(genre: Int, page: Int): Single<List<MovieView>> {
         return getMovies.invoke(genre, page).map {
+            Log.d("teste", it.toString())
             it.map(mapper::mapToView)
         }
     }
 }
-

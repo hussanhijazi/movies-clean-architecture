@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,6 +11,7 @@
 
     <style name="toolbarStyle" parent="@style/Theme.MaterialComponents.NoActionBar">
         <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@android:color/white</item>
     </style>
 
     <style name="tabLayoutStyle" parent="@style/Widget.MaterialComponents.TabLayout">

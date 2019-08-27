@@ -6,12 +6,12 @@ import br.com.hussan.cubosmovies.domain.Movie
 
 class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
     override fun mapFromCached(type: MovieEntity): Movie {
-        return Movie(type.id, type.name)
+        return Movie(type.id, type.name, type.postPath)
 
     }
 
     override fun mapToCached(type: Movie): MovieEntity {
-        return MovieEntity(type.id, name = type.name)
+        return MovieEntity(type.id, type.title, type.posterPath)
 
     }
 

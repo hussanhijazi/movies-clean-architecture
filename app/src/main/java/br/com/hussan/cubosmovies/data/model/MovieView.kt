@@ -6,5 +6,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class MovieView(
     val id: Int,
-    val name: String
+    val title: String,
+    val posterPath: String
 ) : Parcelable
