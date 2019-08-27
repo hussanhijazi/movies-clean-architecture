@@ -9,6 +9,10 @@ class MovieRepository(
     private val api: AppApi,
     private val cache: MovieCache
 ) : MovieDatasource {
+    override fun searchMovies(query: String, page: Int): Single<MoviesPagination> {
+        return api.searchMovies(query, page)
+    }
+
     override fun getMovies(genre: Int, page: Int): Single<MoviesPagination> {
         return api.getMovies(genre, page)
     }
@@ -16,4 +20,5 @@ class MovieRepository(
 
 interface MovieDatasource {
     fun getMovies(genre: Int, page: Int): Single<MoviesPagination>
+    fun searchMovies(query: String, page: Int): Single<MoviesPagination>
 }
