@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import br.com.hussan.cubosmovies.AppNavigator
 import br.com.hussan.cubosmovies.R
 import br.com.hussan.cubosmovies.data.model.MovieView
+import br.com.hussan.cubosmovies.data.model.MoviesPaginationView
 import br.com.hussan.cubosmovies.extensions.add
 import br.com.hussan.cubosmovies.extensions.hide
 import br.com.hussan.cubosmovies.extensions.show
@@ -32,6 +33,7 @@ class ListMoviesFragment : Fragment() {
     private val navigator: AppNavigator by inject { parametersOf(activity) }
     private val compositeDisposable = CompositeDisposable()
     private val movieAdapter by lazy { MoviesAdapter(::goToDetails) }
+    private lateinit var pagination: MoviesPaginationView
 
     private val genre by lazy {
         arguments?.getInt(GENRE)
@@ -82,11 +84,12 @@ class ListMoviesFragment : Fragment() {
             .add(compositeDisposable)
     }
 
-    private fun showProducts(items: List<MovieView>) {
+    private fun showProducts(items: MoviesPaginationView) {
         Log.d("h2", items.toString())
 
-        if (items.isNotEmpty()) {
-            movieAdapter.addItems(items)
+        if (items.results.isNotEmpty()) {
+            pagination = items
+            movieAdapter.addItems(items.results)
             showRecyclerViewProducts()
             if (swipeRefresh.isRefreshing)
                 swipeRefresh.isRefreshing = false
@@ -121,7 +124,8 @@ class ListMoviesFragment : Fragment() {
             scrollListener = object : EndlessRecyclerOnScrollListener(gridLayout) {
                 override fun onLoadMore(page: Int) {
                     actualPage = page
-                    // TODO pagination
+                    if (pagination.totalPages >= page)
+                        getMovies(page)
                 }
             }
 

@@ -1,11 +1,11 @@
 package br.com.hussan.cubosmovies.usecases
 
 import br.com.hussan.cubosmovies.data.datasource.MovieDatasource
-import br.com.hussan.cubosmovies.domain.Movie
+import br.com.hussan.cubosmovies.domain.MoviesPagination
 import io.reactivex.Single
 
 class GetMovies(private val dataSource: MovieDatasource) {
-    operator fun invoke(genre: Int, page: Int): Single<List<Movie>> {
+    operator fun invoke(genre: Int, page: Int): Single<MoviesPagination> {
         return dataSource.getMovies(genre, page)
     }
 }

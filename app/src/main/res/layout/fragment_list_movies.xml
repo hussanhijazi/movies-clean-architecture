@@ -22,7 +22,6 @@
                 android:layout_height="match_parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 tools:listitem="@layout/list_item_movie" />
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include layout="@layout/lyt_error_connection" />
