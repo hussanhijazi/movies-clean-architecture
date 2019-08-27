@@ -9,11 +9,11 @@ class MovieRepository(
     private val api: AppApi,
     private val cache: MovieCache
 ) : MovieDatasource {
-    override fun getMovies(genre: Int): Single<List<Movie>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getMovies(genre: Int, page: Int): Single<List<Movie>> {
+        return api.getMovies(genre, page)
     }
 }
 
 interface MovieDatasource {
-    fun getMovies(genre: Int): Single<List<Movie>>
+    fun getMovies(genre: Int, page: Int): Single<List<Movie>>
 }

@@ -5,7 +5,7 @@ import br.com.hussan.cubosmovies.domain.Movie
 import io.reactivex.Single
 
 class GetMovies(private val dataSource: MovieDatasource) {
-    operator fun invoke(): Single<List<Movie>> {
-        return dataSource.getMovies(1)
+    operator fun invoke(genre: Int, page: Int): Single<List<Movie>> {
+        return dataSource.getMovies(genre, page)
     }
 }

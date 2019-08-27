@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Cubos Movies App</string>
+    <string name="action">Ação</string>
+    <string name="drama">Drama</string>
+    <string name="fantasy">Fantasia</string>
+    <string name="science_fiction">Ficção</string>
+    <string name="movies">Movies</string>
 </resources>
