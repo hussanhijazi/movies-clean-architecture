@@ -9,12 +9,23 @@ class MovieRepository(
     private val api: AppApi,
     private val cache: MovieCache
 ) : MovieDatasource {
+
     override fun searchMovies(query: String, page: Int): Single<MoviesPagination> {
         return api.searchMovies(query, page)
+            .flatMap {
+                saveMoviesCache(it)
+            }
     }
 
     override fun getMovies(genre: Int, page: Int): Single<MoviesPagination> {
         return api.getMovies(genre, page)
+            .flatMap {
+                saveMoviesCache(it)
+            }
+    }
+
+    private fun saveMoviesCache(movies: MoviesPagination): Single<MoviesPagination>? {
+        return cache.saveMovies(movies.results).andThen(Single.just(movies))
     }
 }
 

@@ -8,7 +8,10 @@ class MovieViewMapper : EntityViewMapper<MovieView, Movie> {
         return MovieView(
             type.id,
             type.title,
-            type.posterPath
+            type.posterPath,
+            type.originalTitle,
+            type.popularity,
+            type.overview
         )
     }
 }

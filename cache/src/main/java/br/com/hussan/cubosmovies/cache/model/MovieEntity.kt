@@ -4,9 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "category")
+@Entity(tableName = "movie")
 data class MovieEntity(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "poster_path") var postPath: String
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "poster_path") val postPath: String,
+    @ColumnInfo(name = "original_title") val originalTitle: String,
+    @ColumnInfo(name = "popularity") val popularity: Double,
+    @ColumnInfo(name = "overview") val overview: String,
+    @ColumnInfo(name = "genre") val genre: Int
 )

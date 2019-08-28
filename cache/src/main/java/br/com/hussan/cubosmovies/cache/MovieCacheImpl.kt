@@ -11,11 +11,10 @@ class MovieCacheImpl(
     private val mapper: MovieEntityMapper
 ) : MovieCache {
     override fun getMovies(genre: Int): Single<List<Movie>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return db.movieDao().loadFacts().map { it.map { mapper.mapFromCached(it) } }
     }
 
     override fun saveMovies(movies: List<Movie>): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return db.movieDao().insertAll(movies.map { mapper.mapToCached(it) })
     }
-
 }
