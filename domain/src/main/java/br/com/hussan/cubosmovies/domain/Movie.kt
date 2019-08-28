@@ -7,7 +7,7 @@ data class Movie(
     val originalTitle: String,
     val popularity: Double,
     val overview: String,
-    val backdropPath: String? = null,
+    val backdropPath: String,
     val adult: Boolean? = null,
     val genreIds: List<Int>? = null,
     val originalLanguage: String? = null,

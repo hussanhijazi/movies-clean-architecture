@@ -35,12 +35,13 @@
 
                     <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="220dp">
 
-                        <ImageView
+                        <br.com.hussan.cubosmovies.views.ImageLoadingView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@mipmap/ic_launcher"
+                                app:imageLoadingView="@{movie.backdropPath}" />
                     </FrameLayout>
 
                     <androidx.appcompat.widget.Toolbar

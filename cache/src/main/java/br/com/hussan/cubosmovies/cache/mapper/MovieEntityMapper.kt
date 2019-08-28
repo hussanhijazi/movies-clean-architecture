@@ -12,7 +12,8 @@ class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
             type.postPath,
             type.originalTitle,
             type.popularity,
-            type.overview
+            type.overview,
+            type.backdropPath
         )
 
     }
@@ -24,7 +25,8 @@ class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
             type.posterPath,
             type.originalTitle,
             type.popularity,
-            type.overview
+            type.overview,
+            type.backdropPath
         )
     }
 }

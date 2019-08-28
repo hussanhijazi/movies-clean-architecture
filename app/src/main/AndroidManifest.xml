@@ -18,8 +18,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                    android:name="android.app.default_searchable"
+                    android:value=".ui.search.MovieSearchActivity" />
         </activity>
-        <activity android:name=".ui.search.MovieSearchActivity" />
+        <activity android:name=".ui.search.MovieSearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable" />
+        </activity>
         <activity android:name=".ui.moviedetails.MovieDetailsActivity" />
     </application>
 

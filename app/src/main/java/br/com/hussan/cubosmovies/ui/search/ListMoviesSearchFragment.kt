@@ -17,9 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ListMoviesSearchFragment : ListMoviesFragment() {
     private val viewModelList: SearchMoviesViewModel by viewModel()
 
-    private val query by lazy {
-        arguments?.getString(QUERY)
-    }
+    private lateinit var query: String
 
     companion object {
         val QUERY = "QUERY"
@@ -33,6 +31,7 @@ class ListMoviesSearchFragment : ListMoviesFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        query = arguments?.getString(QUERY) ?: return
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +45,10 @@ class ListMoviesSearchFragment : ListMoviesFragment() {
         val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-//                navigator.goToSearch(query ?: return false)
+            override fun onQueryTextSubmit(query: String): Boolean {
+                movieAdapter.setItems(listOf())
+                this@ListMoviesSearchFragment.query = query
+                getMovies(1)
                 return true
             }
 
@@ -63,29 +64,12 @@ class ListMoviesSearchFragment : ListMoviesFragment() {
                 activity?.finish()
                 true
             }
-//            R.id.share -> {
-////                val sendIntent: Intent = Intent().apply {
-////                    action = Intent.ACTION_SEND
-////                    putExtra(
-////                        Intent.EXTRA_TEXT,
-////                        "${movie.title} por R$ ${product.price} na Enjoei"
-////                    )
-////                    type = "text/plain"
-////                }
-////                startActivity(
-////                    Intent.createChooser(
-////                        sendIntent,
-////                        resources.getText(R.string.share_msg)
-////                    )
-////                )
-//                true
-//            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun getMovies(page: Int) {
-        viewModelList.getMovies(query ?: return, page)
+        viewModelList.getMovies(query, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading(true) }

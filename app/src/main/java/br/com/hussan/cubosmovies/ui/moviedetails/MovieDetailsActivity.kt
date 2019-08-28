@@ -11,16 +11,12 @@ import br.com.hussan.cubosmovies.R
 import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.databinding.ActivityMovieDetailsBinding
 import kotlinx.android.synthetic.main.activity_movie_details.*
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
 class MovieDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieDetailsBinding
     private val movie: MovieView
         get() = intent.getParcelableExtra(AppNavigator.MOVIE)
-
-    private val navigator: AppNavigator by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +38,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.details_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

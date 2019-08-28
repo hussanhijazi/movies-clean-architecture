@@ -5,20 +5,11 @@ import android.os.Bundle
 import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.extensions.navigate
 import br.com.hussan.cubosmovies.ui.moviedetails.MovieDetailsActivity
-import br.com.hussan.cubosmovies.ui.search.MovieSearchActivity
 
 class AppNavigator(private val activity: Activity) {
 
     companion object {
         const val MOVIE = "MOVIE"
-        const val QUERY = "QUERY"
-    }
-
-    fun goToSearch(query: String) {
-        val bundle = Bundle().apply {
-            putString(QUERY, query)
-        }
-        activity.navigate<MovieSearchActivity>(bundle)
     }
 
     fun gotoMovieDetails(movie: MovieView) {
@@ -26,7 +17,7 @@ class AppNavigator(private val activity: Activity) {
             putParcelable(MOVIE, movie)
         }
 
-        activity.navigate<MovieDetailsActivity>()
+        activity.navigate<MovieDetailsActivity>(bundle)
 
     }
 }
