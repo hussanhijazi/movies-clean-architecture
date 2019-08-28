@@ -7,7 +7,7 @@ import br.com.hussan.cubosmovies.R
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.include_toolbar.view.*
 
-class SearchMovieActivity : AppCompatActivity() {
+class MovieSearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,6 @@ class SearchMovieActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-
         setSupportActionBar(lytToolbar.toolbar)
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(true)

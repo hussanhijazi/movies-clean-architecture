@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                navigator.navigateToSearch(query ?: return false)
+                navigator.goToSearch(query ?: return false)
                 return true
             }
 

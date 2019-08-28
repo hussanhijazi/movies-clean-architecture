@@ -66,7 +66,7 @@ open abstract class ListMoviesFragment : Fragment() {
         }
     }
 
-    fun showRecyclerViewProducts() {
+    private fun showRecyclerViewProducts() {
         rvProducts.show()
         lytConnectionError.hide()
     }
@@ -81,7 +81,7 @@ open abstract class ListMoviesFragment : Fragment() {
             progressBar.hide()
     }
 
-    fun setupRecyclerViewProducts() {
+    private fun setupRecyclerViewProducts() {
         rvProducts.run {
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
@@ -103,7 +103,7 @@ open abstract class ListMoviesFragment : Fragment() {
     }
 
     private fun goToDetails(movie: MovieView) {
-
+        navigator.gotoMovieDetails(movie)
     }
 
     override fun onDestroy() {

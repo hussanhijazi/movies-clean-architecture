@@ -5,5 +5,8 @@
     <string name="fantasy">Fantasia</string>
     <string name="science_fiction">Ficção</string>
     <string name="movies">Movies</string>
-    <string name="search_hint">Buscar por nome...</string>
+    <string name="search_hint">Buscar filme…</string>
+    <string name="share">Compartilhar</string>
+    <string name="share_msg">Compartilhar filme</string>
+
 </resources>
