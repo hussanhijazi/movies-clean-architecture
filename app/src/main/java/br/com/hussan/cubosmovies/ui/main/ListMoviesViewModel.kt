@@ -8,10 +8,11 @@ import io.reactivex.Single
 
 class ListMoviesViewModel(
     private val getMovies: GetMovies,
-    private val mapper: MoviesPaginationViewMapper
+    private val mapper: MoviesPaginationViewMapper,
+    private val language: String
 ) : ViewModel() {
 
     fun getMovies(genre: Int, page: Int): Single<MoviesPaginationView> {
-        return getMovies.invoke(genre, page).map(mapper::mapToView)
+        return getMovies.invoke(genre, page, language).map(mapper::mapToView)
     }
 }

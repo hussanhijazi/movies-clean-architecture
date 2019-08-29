@@ -7,17 +7,12 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import br.com.hussan.cubosmovies.AppNavigator
 import br.com.hussan.cubosmovies.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.view.*
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
 
 class MainActivity : AppCompatActivity() {
-
-    private val navigator: AppNavigator by inject { parametersOf(this) }
 
     companion object {
         const val actionId = 28
@@ -50,20 +45,9 @@ class MainActivity : AppCompatActivity() {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         (menu?.findItem(R.id.search)?.actionView as SearchView).apply {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
-            setIconifiedByDefault(false) // Do not iconify the widget; expand it by default
+            setIconifiedByDefault(false)
         }
 
-
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-////                navigator.goToSearch(query ?: return false)
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                return true
-//            }
-//        })
         return true
     }
 

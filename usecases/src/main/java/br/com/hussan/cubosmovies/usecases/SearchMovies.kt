@@ -5,7 +5,7 @@ import br.com.hussan.cubosmovies.domain.MoviesPagination
 import io.reactivex.Single
 
 class SearchMovies(private val dataSource: MovieDatasource) {
-    operator fun invoke(query: String, page: Int): Single<MoviesPagination> {
-        return dataSource.searchMovies(query, page)
+    operator fun invoke(query: String, page: Int, language: String): Single<MoviesPagination> {
+        return dataSource.searchMovies(query, page, language)
     }
 }

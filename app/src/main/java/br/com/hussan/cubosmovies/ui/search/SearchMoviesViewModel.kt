@@ -7,11 +7,12 @@ import br.com.hussan.cubosmovies.usecases.SearchMovies
 import io.reactivex.Single
 
 class SearchMoviesViewModel(
-    private val getMovies: SearchMovies,
-    private val mapper: MoviesPaginationViewMapper
+    private val searchMovies: SearchMovies,
+    private val mapper: MoviesPaginationViewMapper,
+    private val language: String
 ) : ViewModel() {
 
-    fun getMovies(genre: String, page: Int): Single<MoviesPaginationView> {
-        return getMovies.invoke(genre, page).map(mapper::mapToView)
+    fun searchMovies(genre: String, page: Int): Single<MoviesPaginationView> {
+        return searchMovies.invoke(genre, page, language).map(mapper::mapToView)
     }
 }

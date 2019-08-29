@@ -10,15 +10,19 @@ class MovieRepository(
     private val cache: MovieCache
 ) : MovieDatasource {
 
-    override fun searchMovies(query: String, page: Int): Single<MoviesPagination> {
-        return api.searchMovies(query, page)
+    override fun searchMovies(
+        query: String,
+        page: Int,
+        language: String
+    ): Single<MoviesPagination> {
+        return api.searchMovies(query, page, language)
             .flatMap {
                 saveMoviesCache(it)
             }
     }
 
-    override fun getMovies(genre: Int, page: Int): Single<MoviesPagination> {
-        return api.getMovies(genre, page)
+    override fun getMovies(genre: Int, page: Int, language: String): Single<MoviesPagination> {
+        return api.getMovies(genre, page, language)
             .flatMap {
                 saveMoviesCache(it)
             }
@@ -30,6 +34,6 @@ class MovieRepository(
 }
 
 interface MovieDatasource {
-    fun getMovies(genre: Int, page: Int): Single<MoviesPagination>
-    fun searchMovies(query: String, page: Int): Single<MoviesPagination>
+    fun getMovies(genre: Int, page: Int, language: String): Single<MoviesPagination>
+    fun searchMovies(query: String, page: Int, language: String): Single<MoviesPagination>
 }

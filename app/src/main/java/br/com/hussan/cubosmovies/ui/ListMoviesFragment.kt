@@ -1,6 +1,7 @@
 package br.com.hussan.cubosmovies.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,6 +75,7 @@ open abstract class ListMoviesFragment : Fragment() {
     }
 
     fun showError(error: Throwable) {
+        Log.d("h2", error.localizedMessage)
     }
 
     fun showLoading(show: Boolean) {

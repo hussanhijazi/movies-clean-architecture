@@ -1,5 +1,7 @@
 package br.com.hussan.cubosmovies.extensions
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -49,6 +51,16 @@ fun View.show() {
 
 fun View.hide() {
     this.visibility = View.GONE
+}
+
+fun View.scaleDown(callback: () -> Unit) {
+    animate().scaleX(0F).scaleY(0F).setDuration(150)
+        .setListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                callback()
+            }
+        }).start()
 }
 
 inline fun <reified T : Activity> Activity.navigate(

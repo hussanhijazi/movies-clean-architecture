@@ -69,7 +69,7 @@ class ListMoviesSearchFragment : ListMoviesFragment() {
     }
 
     override fun getMovies(page: Int) {
-        viewModelList.getMovies(query, page)
+        viewModelList.searchMovies(query, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading(true) }

@@ -3,11 +3,11 @@ package br.com.hussan.cubosmovies.domain
 data class Movie(
     val id: Int,
     val title: String,
-    val posterPath: String,
+    val posterPath: String?,
     val originalTitle: String,
     val popularity: Double,
     val overview: String,
-    val backdropPath: String,
+    val backdropPath: String?,
     val voteAverage: Double,
     val adult: Boolean? = null,
     val genreIds: List<Int>? = null,

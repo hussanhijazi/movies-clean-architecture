@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.hussan.cubosmovies.AppNavigator
@@ -12,7 +13,9 @@ import br.com.hussan.cubosmovies.AppNavigator.Companion.EXTRA_TITLE_TRANSITION_N
 import br.com.hussan.cubosmovies.R
 import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.databinding.ActivityMovieDetailsBinding
+import br.com.hussan.cubosmovies.extensions.scaleDown
 import kotlinx.android.synthetic.main.activity_movie_details.*
+
 
 class MovieDetailsActivity : AppCompatActivity() {
 
@@ -42,22 +45,25 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        btnShare.setOnClickListener {
-            val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(
-                    Intent.EXTRA_TEXT,
-                    "${movie.title} - ${movie.overview}"
+        btnShare.run {
+            setOnClickListener {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "${movie.title} - ${movie.overview}"
+                    )
+                    type = "text/plain"
+                }
+                startActivity(
+                    Intent.createChooser(
+                        sendIntent,
+                        resources.getText(R.string.share_msg)
+                    )
                 )
-                type = "text/plain"
             }
-            startActivity(
-                Intent.createChooser(
-                    sendIntent,
-                    resources.getText(R.string.share_msg)
-                )
-            )
         }
+
     }
 
     private fun setupToolbar() {
@@ -68,18 +74,24 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.details_menu, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                finish()
+                onBackPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun goToBack() {
+        super.onBackPressed()
+    }
+
+    override fun onBackPressed() {
+        btnShare.scaleDown {
+            btnShare.visibility = View.GONE
+            goToBack()
         }
     }
 }
