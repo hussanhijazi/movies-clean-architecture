@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:windowAnimationStyle">@style/app_animation</item>
+
     </style>
 
     <style name="app_animation" parent="@android:style/Animation.Activity">

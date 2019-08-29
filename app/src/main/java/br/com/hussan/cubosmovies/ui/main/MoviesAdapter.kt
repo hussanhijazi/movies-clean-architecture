@@ -1,48 +1,57 @@
 package br.com.hussan.cubosmovies.ui.main
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.hussan.cubosmovies.R
 import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.databinding.ListItemMovieBinding
 
-class MoviesAdapter(private val clickListenerItem: (MovieView) -> Unit) :
-    RecyclerView.Adapter<MoviesAdapter.ProductViewHolder>() {
+class MoviesAdapter(private val clickListenerItem: (MovieView, ImageView, TextView) -> Unit) :
+    RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
-    private var products: List<MovieView> = listOf()
+    private var movie: List<MovieView> = listOf()
 
-    inner class ProductViewHolder(val binding: ListItemMovieBinding) :
+    inner class MovieViewHolder(val binding: ListItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
         val binding: ListItemMovieBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.list_item_movie, parent, false)
-        return ProductViewHolder(binding)
+        return MovieViewHolder(binding)
     }
 
     fun setItems(items: List<MovieView>) {
-        products = items
+        movie = items
         notifyDataSetChanged()
     }
 
     fun addItems(items: List<MovieView>) {
-        products += items
+        movie += items
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val product = products[position]
-        holder.binding.movie = product
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val movie = movie[position]
+        holder.binding.movie = movie
 
         holder.binding.root.setOnClickListener {
-            clickListenerItem.invoke(product)
+            clickListenerItem.invoke(movie, holder.binding.imgPoster.image, holder.binding.txtTitle)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ViewCompat.setTransitionName(holder.binding.imgPoster.image, movie.posterPath)
+            ViewCompat.setTransitionName(holder.binding.txtTitle, movie.title)
         }
     }
 
-    override fun getItemCount() = products.size
+    override fun getItemCount() = movie.size
 
 }

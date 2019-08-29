@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.hussan.cubosmovies.AppNavigator
@@ -102,8 +104,8 @@ open abstract class ListMoviesFragment : Fragment() {
         }
     }
 
-    private fun goToDetails(movie: MovieView) {
-        navigator.gotoMovieDetails(movie)
+    private fun goToDetails(movie: MovieView, view: ImageView, title: TextView) {
+        navigator.gotoMovieDetails(movie, view, title)
     }
 
     override fun onDestroy() {
