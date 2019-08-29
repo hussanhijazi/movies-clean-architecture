@@ -4,14 +4,15 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "br.com.hussan.cubosmovies"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
 
     }
     androidExtensions {
@@ -46,9 +47,10 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
-    
+
     implementation "androidx.cardview:cardview:$cardViewVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "me.zhanghai.android.materialratingbar:library:$ratingStarVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"

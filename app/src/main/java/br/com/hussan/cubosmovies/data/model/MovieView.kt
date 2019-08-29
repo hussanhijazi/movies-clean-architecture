@@ -11,5 +11,6 @@ data class MovieView(
     val originalTitle: String,
     val popularity: Double,
     val overview: String,
-    val backdropPath: String
+    val backdropPath: String,
+    val voteAverage: Double
 ) : Parcelable

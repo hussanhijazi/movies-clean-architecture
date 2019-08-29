@@ -13,7 +13,8 @@ class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
             type.originalTitle,
             type.popularity,
             type.overview,
-            type.backdropPath
+            type.backdropPath,
+            type.voteAverage
         )
 
     }
@@ -26,7 +27,8 @@ class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
             type.originalTitle,
             type.popularity,
             type.overview,
-            type.backdropPath
+            type.backdropPath,
+            type.voteAverage
         )
     }
 }

@@ -12,7 +12,8 @@ class MovieViewMapper : EntityViewMapper<MovieView, Movie> {
             type.originalTitle,
             type.popularity,
             type.overview,
-            type.backdropPath
+            type.backdropPath,
+            type.voteAverage
         )
     }
 }

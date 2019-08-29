@@ -89,6 +89,18 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Matrix" />
 
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:rating="3.5"
+                                app:layout_constraintStart_toEndOf="@+id/imgPoster"
+                                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                                app:loadRating="@{movie.voteAverage}"
+                                app:mrb_fillBackgroundStars="false"
+                                app:mrb_progressBackgroundTint="@color/colorAccent" />
+
                         <br.com.hussan.cubosmovies.views.ImageLoadingView
                                 android:id="@+id/imgPoster"
                                 android:layout_width="100dp"
@@ -123,10 +135,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fab_margin"
-                    android:backgroundTint="#1181F4"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_share"
+                    app:backgroundTint="#1181F4"
                     app:layout_anchor="@id/appbar"
                     app:layout_anchorGravity="bottom|right|end"
                     app:tint="@android:color/white" />
