@@ -54,17 +54,19 @@ ext {
     roomVersion = '2.1.0-alpha04'
     picassoVersion = '2.71828'
     ratingStarVersion = '1.3.2'
+    pageIndicatorVersion = '1.0.3'
+    youtubeVersion = '10.0.4'
 
     jUnitVersion = '4.12'
     runnerVersion = '1.1.2-alpha01'
     expressoVersion = '3.1.2-alpha01'
     mockitoVersion = '2.24.5'
     coreTestingVersion = "1.1.1"
-    androidXTest = "1.1.0"
+    androidXTestVersion = "1.1.0"
 
     robolectricVersion = '3.4.2'
 
-    dbDebug = "1.0.6"
-    stetho = "1.5.1"
+    dbDebugVersion = "1.0.6"
+    stethoVersion = "1.5.1"
 
 }

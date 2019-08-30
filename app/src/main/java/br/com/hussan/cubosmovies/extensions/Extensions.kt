@@ -63,6 +63,16 @@ fun View.scaleDown(callback: () -> Unit) {
         }).start()
 }
 
+fun View.scaleUp(callback: () -> Unit) {
+    animate().scaleX(1F).scaleY(1F).setDuration(500)
+        .setListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                callback()
+            }
+        }).start()
+}
+
 inline fun <reified T : Activity> Activity.navigate(
     bundle: Bundle? = null,
     options: ActivityOptionsCompat? = null

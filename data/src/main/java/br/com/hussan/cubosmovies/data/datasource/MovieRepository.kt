@@ -2,6 +2,7 @@ package br.com.hussan.cubosmovies.data.datasource
 
 import br.com.hussan.cubosmovies.data.AppApi
 import br.com.hussan.cubosmovies.data.cache.MovieCache
+import br.com.hussan.cubosmovies.domain.MovieVideos
 import br.com.hussan.cubosmovies.domain.MoviesPagination
 import io.reactivex.Single
 
@@ -36,6 +37,10 @@ class MovieRepository(
             }
     }
 
+    override fun getMovieVideos(movieId: Int, language: String): Single<MovieVideos> {
+        return api.getMovieVideos(movieId, language)
+    }
+
     private fun saveMoviesCache(movies: MoviesPagination): Single<MoviesPagination>? {
         return cache.saveMovies(movies.results).andThen(Single.just(movies))
     }
@@ -44,4 +49,5 @@ class MovieRepository(
 interface MovieDatasource {
     fun getMovies(genre: Int, page: Int, language: String): Single<MoviesPagination>
     fun searchMovies(query: String, page: Int, language: String): Single<MoviesPagination>
+    fun getMovieVideos(movieId: Int, language: String): Single<MovieVideos>
 }

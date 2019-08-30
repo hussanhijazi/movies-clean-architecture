@@ -26,10 +26,10 @@ dependencies {
 
     androidTestImplementation "org.koin:koin-test:$koinVersion"
 
-    androidTestImplementation "androidx.test:core:$androidXTest"
-    androidTestImplementation "androidx.test:runner:$androidXTest"
-    androidTestImplementation "androidx.test:rules:$androidXTest"
-    androidTestImplementation "androidx.test.ext:junit:$androidXTest"
+    androidTestImplementation "androidx.test:core:$androidXTestVersion"
+    androidTestImplementation "androidx.test:runner:$androidXTestVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestVersion"
 
     androidTestImplementation "androidx.test.espresso:espresso-core:$expressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$expressoVersion"

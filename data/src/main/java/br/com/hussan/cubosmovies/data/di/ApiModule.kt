@@ -41,7 +41,7 @@ private fun makeApiKeyInterceptor(): Interceptor {
         val originalHttpUrl = original.url()
 
         val url = originalHttpUrl.newBuilder()
-            .addQueryParameter("apikey", apiKey)
+            .addQueryParameter("api_key", apiKey)
             .build()
 
         val requestBuilder = original.newBuilder().url(url)

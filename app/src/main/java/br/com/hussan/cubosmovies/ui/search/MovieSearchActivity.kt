@@ -15,8 +15,6 @@ class MovieSearchActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_search)
         setupToolbar()
-
-        // Verify the action and get the query
         if (Intent.ACTION_SEARCH == intent.action) {
             intent.getStringExtra(SearchManager.QUERY)?.also { query ->
                 setFragment(query)

@@ -51,20 +51,22 @@ dependencies {
     implementation "androidx.cardview:cardview:$cardViewVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "me.zhanghai.android.materialratingbar:library:$ratingStarVersion"
+    implementation "com.romandanylyk:pageindicatorview:$pageIndicatorVersion"
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$youtubeVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "android.arch.core:core-testing:$coreTestingVersion"
 
-    androidTestImplementation "androidx.test:core:$androidXTest"
-    androidTestImplementation "androidx.test:runner:$androidXTest"
-    androidTestImplementation "androidx.test:rules:$androidXTest"
-    androidTestImplementation "androidx.test.ext:junit:$androidXTest"
+    androidTestImplementation "androidx.test:core:$androidXTestVersion"
+    androidTestImplementation "androidx.test:runner:$androidXTestVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestVersion"
 
     androidTestImplementation "androidx.test.espresso:espresso-core:$expressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$expressoVersion"
 
-    implementation "com.facebook.stetho:stetho:$stetho"
-    debugImplementation "com.amitshekhar.android:debug-db:$dbDebug"
+    implementation "com.facebook.stetho:stetho:$stethoVersion"
+    debugImplementation "com.amitshekhar.android:debug-db:$dbDebugVersion"
 
 }

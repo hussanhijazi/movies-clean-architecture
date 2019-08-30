@@ -1,6 +1,7 @@
 package br.com.hussan.cubosmovies.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -118,6 +119,7 @@ abstract class ListMoviesFragment : Fragment() {
     }
 
     private fun goToDetails(movie: MovieView, view: ImageView, title: TextView) {
+        Log.d("h2", movie.toString())
         navigator.gotoMovieDetails(movie, view, title)
     }
 

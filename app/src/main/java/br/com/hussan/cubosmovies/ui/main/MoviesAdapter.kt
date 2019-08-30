@@ -1,11 +1,9 @@
 package br.com.hussan.cubosmovies.ui.main
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.hussan.cubosmovies.R
@@ -42,14 +40,15 @@ class MoviesAdapter(private val clickListenerItem: (MovieView, ImageView, TextVi
         val movie = movie[position]
         holder.binding.movie = movie
 
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            ViewCompat.setTransitionName(holder.binding.imgPoster.image, movie.posterPath)
+//            ViewCompat.setTransitionName(holder.binding.txtTitle, movie.title)
+//        }
+
         holder.binding.root.setOnClickListener {
             clickListenerItem.invoke(movie, holder.binding.imgPoster.image, holder.binding.txtTitle)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ViewCompat.setTransitionName(holder.binding.imgPoster.image, movie.posterPath)
-            ViewCompat.setTransitionName(holder.binding.txtTitle, movie.title)
-        }
     }
 
     override fun getItemCount() = movie.size

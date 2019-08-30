@@ -11,7 +11,7 @@ val cacheModule = module {
     single {
         databaseBuilder(
             get(),
-            AppDatabase::class.java, "cubosmovies2"
+            AppDatabase::class.java, "cubosmovies"
         ).build()
     }
     single { MovieEntityMapper() }
