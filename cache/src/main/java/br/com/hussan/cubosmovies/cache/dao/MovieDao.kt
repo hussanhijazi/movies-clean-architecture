@@ -11,10 +11,10 @@ import io.reactivex.Single
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(categories: List<MovieEntity>): Completable
+    fun insertAll(movies: List<MovieEntity>): Completable
 
     // TODO
-    @Query("SELECT * from movie")
-    fun loadFacts(): Single<List<MovieEntity>>
+    @Query("SELECT * FROM movie WHERE genre_ids LIKE :genre")
+    fun loadMovies(genre: String): Single<List<MovieEntity>>
 
 }

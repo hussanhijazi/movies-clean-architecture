@@ -25,15 +25,15 @@ class MovieRepository(
         return api.getMovies(genre, page, language)
             .flatMap {
                 saveMoviesCache(it)
+            }.onErrorResumeNext {
+                cache.getMovies(genre).flatMap {
+                    Single.just(MoviesPagination(1, it, 1, it.size))
+                }
             }
     }
 
     private fun saveMoviesCache(movies: MoviesPagination): Single<MoviesPagination>? {
-        return cache.saveMovies(movies.results).andThen(Single.just(movies)).doOnError {
-            val a = it
-        }.doOnSuccess {
-            val a = it
-        }
+        return cache.saveMovies(movies.results).andThen(Single.just(movies))
     }
 }
 
