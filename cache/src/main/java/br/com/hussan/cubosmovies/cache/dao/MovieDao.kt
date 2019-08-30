@@ -13,8 +13,9 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(movies: List<MovieEntity>): Completable
 
-    // TODO
     @Query("SELECT * FROM movie WHERE genre_ids LIKE :genre")
-    fun loadMovies(genre: String): Single<List<MovieEntity>>
+    fun loadMoviesByGenre(genre: String): Single<List<MovieEntity>>
 
+    @Query("SELECT * FROM movie WHERE name LIKE :query")
+    fun loadMoviesByName(query: String): Single<List<MovieEntity>>
 }

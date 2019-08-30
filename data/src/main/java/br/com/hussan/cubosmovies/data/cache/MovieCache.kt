@@ -6,5 +6,6 @@ import io.reactivex.Single
 
 interface MovieCache {
     fun saveMovies(movies: List<Movie>): Completable
-    fun getMovies(genre: Int): Single<List<Movie>>
+    fun getMoviesByGenre(genre: Int): Single<List<Movie>>
+    fun getMoviesByName(query: String): Single<List<Movie>>
 }

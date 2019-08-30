@@ -18,6 +18,10 @@ class MovieRepository(
         return api.searchMovies(query, page, language)
             .flatMap {
                 saveMoviesCache(it)
+            }.onErrorResumeNext {
+                cache.getMoviesByName(query).flatMap {
+                    Single.just(MoviesPagination(1, it, 1, it.size))
+                }
             }
     }
 
@@ -26,7 +30,7 @@ class MovieRepository(
             .flatMap {
                 saveMoviesCache(it)
             }.onErrorResumeNext {
-                cache.getMovies(genre).flatMap {
+                cache.getMoviesByGenre(genre).flatMap {
                     Single.just(MoviesPagination(1, it, 1, it.size))
                 }
             }

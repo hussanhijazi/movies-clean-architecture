@@ -15,7 +15,7 @@ class ListMoviesByGenreFragment : ListMoviesFragment() {
     }
 
     companion object {
-        val GENRE = "GENRE"
+        const val GENRE = "GENRE"
         fun newInstance(genre: Int) = ListMoviesByGenreFragment().apply {
             arguments = Bundle().apply {
                 putInt(GENRE, genre)

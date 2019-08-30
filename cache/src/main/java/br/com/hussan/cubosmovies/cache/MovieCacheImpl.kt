@@ -10,8 +10,14 @@ class MovieCacheImpl(
     private val db: AppDatabase,
     private val mapper: MovieEntityMapper
 ) : MovieCache {
-    override fun getMovies(genre: Int): Single<List<Movie>> {
-        return db.movieDao().loadMovies("%${genre}%").map { it.map { mapper.mapFromCached(it) } }
+    override fun getMoviesByName(query: String): Single<List<Movie>> {
+        return db.movieDao().loadMoviesByName("%${query}%")
+            .map { it.map { mapper.mapFromCached(it) } }
+    }
+
+    override fun getMoviesByGenre(genre: Int): Single<List<Movie>> {
+        return db.movieDao().loadMoviesByGenre("%${genre}%")
+            .map { it.map { mapper.mapFromCached(it) } }
     }
 
     override fun saveMovies(movies: List<Movie>): Completable {
