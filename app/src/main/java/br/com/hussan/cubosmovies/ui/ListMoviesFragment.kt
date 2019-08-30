@@ -1,7 +1,6 @@
 package br.com.hussan.cubosmovies.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,12 +18,13 @@ import br.com.hussan.cubosmovies.ui.main.MoviesAdapter
 import br.com.hussan.cubosmovies.util.EndlessRecyclerOnScrollListener
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_list_movies.*
-import kotlinx.android.synthetic.main.lyt_error_connection.*
+import kotlinx.android.synthetic.main.lyt_empty_state.*
+import kotlinx.android.synthetic.main.lyt_error.*
 import kotlinx.android.synthetic.main.lyt_loading.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-open abstract class ListMoviesFragment : Fragment() {
+abstract class ListMoviesFragment : Fragment() {
 
     private val navigator: AppNavigator by inject { parametersOf(activity) }
     private lateinit var pagination: MoviesPaginationView
@@ -66,16 +66,27 @@ open abstract class ListMoviesFragment : Fragment() {
             showRecyclerViewProducts()
             if (swipeRefresh.isRefreshing)
                 swipeRefresh.isRefreshing = false
+        } else {
+            showEmptyState()
         }
+    }
+
+    private fun showEmptyState() {
+        lytEmptystate.show()
+        lytError.hide()
+        rvProducts.hide()
     }
 
     private fun showRecyclerViewProducts() {
         rvProducts.show()
-        lytConnectionError.hide()
+        lytEmptystate.hide()
+        lytError.hide()
     }
 
-    fun showError(error: Throwable) {
-        Log.d("h2", error.localizedMessage)
+    fun showError() {
+        lytError.show()
+        rvProducts.hide()
+        lytEmptystate.hide()
     }
 
     fun showLoading(show: Boolean) {

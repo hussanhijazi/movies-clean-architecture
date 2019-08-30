@@ -24,7 +24,9 @@
                 tools:listitem="@layout/list_item_movie" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <include layout="@layout/lyt_error_connection" />
+    <include layout="@layout/lyt_empty_state" />
+
+    <include layout="@layout/lyt_error" />
 
     <include layout="@layout/lyt_loading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,7 @@ class ListMoviesByGenreFragment : ListMoviesFragment() {
             .doOnSubscribe { showLoading(true) }
             .doFinally { showLoading(false) }
             .doOnError { showLoading(false) }
-            .subscribe(::showMovies, ::showError)
+            .subscribe({ showMovies(it) }, { showError() })
             .add(compositeDisposable)
     }
 

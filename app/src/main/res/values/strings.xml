@@ -8,4 +8,6 @@
     <string name="search_hint">Buscar filme…</string>
     <string name="share">Compartilhar</string>
     <string name="share_msg">Compartilhar filme</string>
+    <string name="msg_empty_state">Infelizmente a sua pesquisa não retornou nenhum registro.</string>
+    <string name="msg_error">Houve um erro, tente novamente mais tarde</string>
 </resources>
