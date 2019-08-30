@@ -54,7 +54,7 @@ fun View.hide() {
 }
 
 fun View.scaleDown(callback: () -> Unit) {
-    animate().scaleX(0F).scaleY(0F).setDuration(150)
+    animate().scaleX(0F).scaleY(0F).setDuration(200)
         .setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
                 super.onAnimationEnd(animation)

@@ -65,5 +65,6 @@ ext {
     robolectricVersion = '3.4.2'
 
     dbDebug = "1.0.6"
+    stetho = "1.5.1"
 
 }

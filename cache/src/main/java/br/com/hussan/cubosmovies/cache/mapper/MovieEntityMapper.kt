@@ -14,7 +14,8 @@ class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
             type.popularity,
             type.overview,
             type.backdropPath,
-            type.voteAverage
+            type.voteAverage,
+            type.genreIds
         )
 
     }
@@ -28,7 +29,8 @@ class MovieEntityMapper : EntityMapper<MovieEntity, Movie> {
             type.popularity,
             type.overview,
             type.backdropPath,
-            type.voteAverage
+            type.voteAverage,
+            type.genreIds
         )
     }
 }

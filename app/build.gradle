@@ -64,6 +64,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$expressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$expressoVersion"
 
+    implementation "com.facebook.stetho:stetho:$stetho"
     debugImplementation "com.amitshekhar.android:debug-db:$dbDebug"
 
 }

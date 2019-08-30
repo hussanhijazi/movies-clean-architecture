@@ -1,7 +1,7 @@
-package br.com.hussan.cache.cubosmovies
+package br.com.hussan.cubosmovies.cache
 
 import androidx.room.TypeConverter
-import java.util.Date
+import java.util.*
 
 class DateConverter {
     @TypeConverter
@@ -10,3 +10,5 @@ class DateConverter {
     @TypeConverter
     fun dateToTimestamp(date: Date?) = date?.time
 }
+
+

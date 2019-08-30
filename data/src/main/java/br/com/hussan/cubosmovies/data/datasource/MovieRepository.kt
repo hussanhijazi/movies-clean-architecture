@@ -29,7 +29,11 @@ class MovieRepository(
     }
 
     private fun saveMoviesCache(movies: MoviesPagination): Single<MoviesPagination>? {
-        return cache.saveMovies(movies.results).andThen(Single.just(movies))
+        return cache.saveMovies(movies.results).andThen(Single.just(movies)).doOnError {
+            val a = it
+        }.doOnSuccess {
+            val a = it
+        }
     }
 }
 

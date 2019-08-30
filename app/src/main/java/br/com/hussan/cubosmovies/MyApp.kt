@@ -6,11 +6,15 @@ import br.com.hussan.cubosmovies.data.di.apiModule
 import br.com.hussan.cubosmovies.data.di.dataModule
 import br.com.hussan.cubosmovies.di.appModule
 import br.com.hussan.cubosmovies.usecases.di.useCaseModule
+import com.facebook.stetho.Stetho
 import org.koin.android.ext.android.startKoin
 
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin(this, listOf(appModule, useCaseModule, apiModule, dataModule, cacheModule))
+
+        if (BuildConfig.DEBUG)
+            Stetho.initializeWithDefaults(this)
     }
 }

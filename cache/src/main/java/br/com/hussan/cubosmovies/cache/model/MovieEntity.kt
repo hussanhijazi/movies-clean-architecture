@@ -3,6 +3,8 @@ package br.com.hussan.cubosmovies.cache.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import br.com.hussan.cubosmovies.cache.GenreConverter
 
 @Entity(tableName = "movie")
 data class MovieEntity(
@@ -13,6 +15,7 @@ data class MovieEntity(
     @ColumnInfo(name = "popularity") val popularity: Double,
     @ColumnInfo(name = "overview") val overview: String,
     @ColumnInfo(name = "backdrop_path") val backdropPath: String?,
-    @ColumnInfo(name = "vote_avarage") val voteAverage: Double
-
+    @ColumnInfo(name = "vote_avarage") val voteAverage: Double,
+    @TypeConverters(GenreConverter::class)
+    @ColumnInfo(name = "genre_ids") val genreIds: List<Int>
 )

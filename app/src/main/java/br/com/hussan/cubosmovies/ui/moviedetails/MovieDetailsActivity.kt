@@ -16,7 +16,6 @@ import br.com.hussan.cubosmovies.databinding.ActivityMovieDetailsBinding
 import br.com.hussan.cubosmovies.extensions.scaleDown
 import kotlinx.android.synthetic.main.activity_movie_details.*
 
-
 class MovieDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieDetailsBinding
@@ -49,17 +48,11 @@ class MovieDetailsActivity : AppCompatActivity() {
             setOnClickListener {
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(
-                        Intent.EXTRA_TEXT,
-                        "${movie.title} - ${movie.overview}"
-                    )
+                    putExtra(Intent.EXTRA_TEXT, "${movie.title} - ${movie.overview}")
                     type = "text/plain"
                 }
                 startActivity(
-                    Intent.createChooser(
-                        sendIntent,
-                        resources.getText(R.string.share_msg)
-                    )
+                    Intent.createChooser(sendIntent, resources.getText(R.string.share_msg))
                 )
             }
         }
