@@ -7,7 +7,7 @@ import br.com.hussan.cubosmovies.cache.dao.MovieDao
 import br.com.hussan.cubosmovies.cache.model.MovieEntity
 
 @Database(entities = [MovieEntity::class], version = 1)
-@TypeConverters(GenreConverter::class)
+@TypeConverters(GenreConverter::class, DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 }

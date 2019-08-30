@@ -2,6 +2,7 @@ package br.com.hussan.cubosmovies.data.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 data class MovieView(
@@ -13,5 +14,6 @@ data class MovieView(
     val overview: String,
     val backdropPath: String?,
     val voteAverage: Double,
-    val genreIds: List<Int>
+    val genreIds: List<Int>,
+    val releaseDate: Date
 ) : Parcelable

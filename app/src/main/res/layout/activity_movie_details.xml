@@ -87,17 +87,33 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Matrix" />
 
+                        <TextView
+                                android:id="@+id/txtReleaseDate"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="12sp"
+                                app:layout_constraintStart_toEndOf="@+id/imgPoster"
+                                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                                app:releaseDateYear="@{movie.releaseDate}"
+                                app:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+                                tools:text="2019" />
+
                         <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:id="@+id/materialRatingBar"
                                 style="@style/Widget.MaterialRatingBar.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
                                 android:isIndicator="true"
                                 app:layout_constraintStart_toEndOf="@+id/imgPoster"
-                                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                                app:layout_constraintTop_toBottomOf="@+id/txtReleaseDate"
                                 app:loadRating="@{movie.voteAverage}"
                                 app:mrb_fillBackgroundStars="false"
                                 app:mrb_progressBackgroundTint="@color/colorAccent" />
+
 
                         <br.com.hussan.cubosmovies.views.ImageLoadingView
                                 android:id="@+id/imgPoster"
