@@ -10,7 +10,11 @@ class GenreConverter {
 
     @TypeConverter
     fun toListGenres(genres: String): List<Int> {
-        return genres.split(",").map { it.toInt() }
+        if (genres.isNotEmpty())
+            return genres.split(",").map {
+                it.toInt()
+            }
+        return listOf()
     }
 }
 

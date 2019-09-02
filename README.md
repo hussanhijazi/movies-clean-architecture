@@ -1,7 +1,16 @@
-# Clean Architecture
+# Clean Architecture 
+
+## Api
+The Movie DB API - [https://api.themoviedb.org/3/](URL).
 
 ## Código
-Estou usando *Clean Architecture* baseada na implementação do Antonio Leiva e da BufferApp.
+Estou usando *Clean Architecture* baseada na implementação do Antonio Leiva e da BufferApp. 
+
+Na primeira tela pega os filmes das seguintes gêneros: Ação, Drama, Fantasia e Ficção. No clique no filme, passamos o objeto filme para a tela de detalhes, onde buscamos os trailers do filme e colocamos numa *RecyclerView*.
+
+Além disso temos a busca na *toolbar* onde faz a busca por termos.
+
+As requisições de busca por gênero ou termo são salvas localmente, para serem usadas quando o usuário estiver sem internet.
 
 ### Módulos
 #### domain

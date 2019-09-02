@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="image"
-                type="String" />
+            name="image"
+            type="String" />
 
         <variable
-                name="video"
-                type="br.com.hussan.cubosmovies.domain.Video" />
+            name="video"
+            type="br.com.hussan.cubosmovies.domain.Video" />
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <br.com.hussan.cubosmovies.views.ImageLoadingView
-                android:id="@+id/videoMovie"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                app:imageLoadingView="@{image}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/videoMovie"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:imageLoadingView="@{image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_play_circle_outline" />
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_circle_outline" />
         </br.com.hussan.cubosmovies.views.ImageLoadingView>
 
         <TextView
-                style="@style/titleStyle"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{video.name}"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/videoMovie"
-                tools:text="Matrix trailer" />
+            style="@style/titleStyle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{video.name}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/videoMovie"
+            tools:text="Matrix trailer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

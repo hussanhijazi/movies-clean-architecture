@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.hussan.cubosmovies.AppNavigator
@@ -16,7 +17,6 @@ import br.com.hussan.cubosmovies.util.EndlessRecyclerOnScrollListener
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_list_movies.*
 import kotlinx.android.synthetic.main.lyt_empty_state.*
-import kotlinx.android.synthetic.main.lyt_error.*
 import kotlinx.android.synthetic.main.lyt_loading.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -78,20 +78,18 @@ abstract class ListMoviesFragment : Fragment() {
 
     private fun showEmptyState() {
         lytEmptystate.show()
-        lytError.hide()
         rvMovies.hide()
     }
 
     private fun showRecyclerViewProducts() {
         rvMovies.show()
         lytEmptystate.hide()
-        lytError.hide()
     }
 
     fun showError() {
-        lytError.show()
         rvMovies.hide()
         lytEmptystate.hide()
+        Toast.makeText(activity, getString(R.string.msg_error), Toast.LENGTH_LONG).show()
     }
 
     fun showLoading(show: Boolean) {
