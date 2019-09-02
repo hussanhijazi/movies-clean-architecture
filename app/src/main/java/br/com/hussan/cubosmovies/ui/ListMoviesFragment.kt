@@ -1,12 +1,9 @@
 package br.com.hussan.cubosmovies.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.hussan.cubosmovies.AppNavigator
@@ -36,6 +33,11 @@ abstract class ListMoviesFragment : Fragment() {
 
     lateinit var scrollListener: EndlessRecyclerOnScrollListener
 
+    companion object {
+        const val PAGINATION = "PAGINATION"
+        const val MOVIES = "MOVIES"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,14 +51,36 @@ abstract class ListMoviesFragment : Fragment() {
 
         setupRecyclerViewProducts()
         setupSwipeRefresh()
-        getMovies(1)
+
+        lifecycle.addObserver(RxLifecycleObserver(compositeDisposable))
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            pagination =
+                savedInstanceState.getParcelable(PAGINATION) ?: return
+            val movies = savedInstanceState.getParcelableArrayList<MovieView>(MOVIES)
+            movieAdapter.setItems(movies?.toList() ?: listOf())
+        } else getMovies(actualPage)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.apply {
+            putParcelable(PAGINATION, pagination)
+            putParcelableArrayList(MOVIES, ArrayList(movieAdapter.getMovies()))
+        }
     }
 
     private fun setupSwipeRefresh() {
         swipeRefresh.setOnRefreshListener {
-            movieAdapter.setItems(listOf())
+            actualPage = 1
+            pagination = MoviesPaginationView()
+            movieAdapter.setItems(arrayListOf())
             scrollListener.reset()
-            getMovies(1)
+            getMovies(actualPage)
         }
     }
 
@@ -108,24 +132,17 @@ abstract class ListMoviesFragment : Fragment() {
 
             scrollListener = object : EndlessRecyclerOnScrollListener(gridLayout) {
                 override fun onLoadMore(page: Int) {
-                    actualPage = page
-                    if (pagination.totalPages >= page)
-                        getMovies(page)
+                    actualPage = pagination.page + 1
+                    if (pagination.totalPages >= actualPage)
+                        getMovies(actualPage)
                 }
             }
-
             addOnScrollListener(scrollListener)
         }
     }
 
-    private fun goToDetails(movie: MovieView, view: ImageView, title: TextView) {
-        Log.d("h2", movie.toString())
-        navigator.gotoMovieDetails(movie, view, title)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.clear()
+    private fun goToDetails(movie: MovieView) {
+        navigator.gotoMovieDetails(movie)
     }
 
     abstract fun getMovies(page: Int)

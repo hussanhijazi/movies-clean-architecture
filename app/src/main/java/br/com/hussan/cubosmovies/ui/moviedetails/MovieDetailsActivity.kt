@@ -39,7 +39,6 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         setupToolbar()
         setupViews()
-//        setImageTransition()
         initImageSlider()
         setImages()
         getMovieVideos()
@@ -70,15 +69,6 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setVideos(videos: MovieVideos?) {
         imageAdapter.addItems(videos?.results ?: return)
     }
-
-//    private fun setImageTransition() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            intent?.extras?.run {
-//                imgPoster.image.transitionName = getString(EXTRA_IMAGE_TRANSITION_NAME)
-//                txtTitle.transitionName = getString(EXTRA_TITLE_TRANSITION_NAME)
-//            }
-//        }
-//    }
 
     private fun setupViews() {
         btnShare.run {

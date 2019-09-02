@@ -2,18 +2,16 @@ package br.com.hussan.cubosmovies.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.hussan.cubosmovies.R
 import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.databinding.ListItemMovieBinding
 
-class MoviesAdapter(private val clickListenerItem: (MovieView, ImageView, TextView) -> Unit) :
+class MoviesAdapter(private val clickListenerItem: (MovieView) -> Unit) :
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
-    private var movie: List<MovieView> = listOf()
+    private var movies: List<MovieView> = listOf()
 
     inner class MovieViewHolder(val binding: ListItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -27,30 +25,27 @@ class MoviesAdapter(private val clickListenerItem: (MovieView, ImageView, TextVi
     }
 
     fun setItems(items: List<MovieView>) {
-        movie = items
+        movies = items
         notifyDataSetChanged()
     }
 
     fun addItems(items: List<MovieView>) {
-        movie += items
+        movies += items
         notifyDataSetChanged()
     }
 
+    fun getMovies() = movies
+
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movie[position]
+        val movie = movies[position]
         holder.binding.movie = movie
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            ViewCompat.setTransitionName(holder.binding.imgPoster.image, movie.posterPath)
-//            ViewCompat.setTransitionName(holder.binding.txtTitle, movie.title)
-//        }
-
         holder.binding.root.setOnClickListener {
-            clickListenerItem.invoke(movie, holder.binding.imgPoster.image, holder.binding.txtTitle)
+            clickListenerItem.invoke(movie)
         }
 
     }
 
-    override fun getItemCount() = movie.size
+    override fun getItemCount() = movies.size
 
 }
