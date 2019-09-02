@@ -30,7 +30,7 @@ class DetailsActivityTest {
 
     @Test
     fun checkMovieDetails() {
-        
+
         onView(withText(MOVIE_VIEW.overview)).check(matches(isDisplayed()))
         onView(withText(MOVIE_VIEW.title)).check(matches(isDisplayed()))
 
@@ -42,10 +42,10 @@ class DetailsActivityTest {
 
     @Test
     fun swipeViewPager() {
-        onView(withId(R.id.vpPhotos))
+        onView(withId(R.id.rvVideos))
             .check(matches(isDisplayed()))
 
-        onView(withId(R.id.vpPhotos))
+        onView(withId(R.id.rvVideos))
             .perform(ViewActions.swipeLeft())
     }
 }
