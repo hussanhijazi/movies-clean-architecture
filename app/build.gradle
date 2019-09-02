@@ -51,7 +51,6 @@ dependencies {
     implementation "androidx.cardview:cardview:$cardViewVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "me.zhanghai.android.materialratingbar:library:$ratingStarVersion"
-    implementation "com.romandanylyk:pageindicatorview:$pageIndicatorVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
