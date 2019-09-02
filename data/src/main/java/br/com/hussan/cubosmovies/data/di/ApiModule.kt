@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 const val baseUrl = "https://api.themoviedb.org/3/"
 const val apiKey = "355905da2aa6783005496749a6ac5a53"
-
+const val timeout = 30L
 val apiModule = module {
     single {
         createWebService<AppApi>(get(), baseUrl)
@@ -29,8 +29,8 @@ private fun makeOkHttpClient(interceptors: List<Interceptor>): OkHttpClient {
         interceptors.forEach {
             this.addInterceptor(it)
         }
-    }.connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
+    }.connectTimeout(timeout, TimeUnit.SECONDS)
+        .readTimeout(timeout, TimeUnit.SECONDS)
         .build()
 
 }
