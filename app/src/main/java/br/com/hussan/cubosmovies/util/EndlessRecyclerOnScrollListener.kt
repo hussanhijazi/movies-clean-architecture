@@ -9,12 +9,16 @@ abstract class EndlessRecyclerOnScrollListener(private val mLinearLayoutManager:
 
     private var previousTotal = 0
     private var loading = true
-    private val visibleThreshold = 5
+
     private var firstVisibleItem: Int = 0
     private var visibleItemCount: Int = 0
     private var totalItemCount: Int = 0
 
     private var currentPage = 1
+
+    companion object {
+        private const val visibleThreshold = 5
+    }
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)

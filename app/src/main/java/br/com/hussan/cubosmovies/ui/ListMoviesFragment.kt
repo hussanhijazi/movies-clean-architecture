@@ -12,7 +12,6 @@ import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.data.model.MoviesPaginationView
 import br.com.hussan.cubosmovies.extensions.hide
 import br.com.hussan.cubosmovies.extensions.show
-import br.com.hussan.cubosmovies.ui.main.MoviesAdapter
 import br.com.hussan.cubosmovies.util.EndlessRecyclerOnScrollListener
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_list_movies.*
@@ -53,25 +52,6 @@ abstract class ListMoviesFragment : Fragment() {
         setupSwipeRefresh()
 
         lifecycle.addObserver(RxLifecycleObserver(compositeDisposable))
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        if (savedInstanceState != null) {
-            pagination =
-                savedInstanceState.getParcelable(PAGINATION) ?: return
-            val movies = savedInstanceState.getParcelableArrayList<MovieView>(MOVIES)
-            movieAdapter.setItems(movies?.toList() ?: listOf())
-        } else getMovies(actualPage)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.apply {
-            putParcelable(PAGINATION, pagination)
-            putParcelableArrayList(MOVIES, ArrayList(movieAdapter.getMovies()))
-        }
     }
 
     private fun setupSwipeRefresh() {
@@ -131,7 +111,7 @@ abstract class ListMoviesFragment : Fragment() {
             adapter = movieAdapter
 
             scrollListener = object : EndlessRecyclerOnScrollListener(gridLayout) {
-                override fun onLoadMore(page: Int) {
+                override fun onLoadMore() {
                     actualPage = pagination.page + 1
                     if (pagination.totalPages >= actualPage)
                         getMovies(actualPage)
@@ -143,6 +123,26 @@ abstract class ListMoviesFragment : Fragment() {
 
     private fun goToDetails(movie: MovieView) {
         navigator.gotoMovieDetails(movie)
+    }
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            pagination =
+                savedInstanceState.getParcelable(PAGINATION) ?: return
+            val movies = savedInstanceState.getParcelableArrayList<MovieView>(MOVIES)
+            movieAdapter.setItems(movies?.toList() ?: listOf())
+        } else getMovies(actualPage)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.apply {
+            putParcelable(PAGINATION, pagination)
+            putParcelableArrayList(MOVIES, ArrayList(movieAdapter.getMovies()))
+        }
     }
 
     abstract fun getMovies(page: Int)

@@ -41,7 +41,8 @@ class DetailsActivityTest {
     }
 
     @Test
-    fun swipeViewPager() {
+    fun swipeRvVideos() {
+
         onView(withId(R.id.rvVideos))
             .check(matches(isDisplayed()))
 

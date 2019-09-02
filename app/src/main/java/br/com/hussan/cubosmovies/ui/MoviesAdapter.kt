@@ -1,4 +1,4 @@
-package br.com.hussan.cubosmovies.ui.main
+package br.com.hussan.cubosmovies.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
