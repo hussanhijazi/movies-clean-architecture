@@ -37,42 +37,11 @@
 
                         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                    <androidx.viewpager.widget.ViewPager
-                            android:id="@+id/vpPhotos"
+                    <br.com.hussan.cubosmovies.views.ImageLoadingView
+                            android:id="@+id/imgBackdrop"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    <com.rd.PageIndicatorView
-                            android:id="@+id/pageIndicatorView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_gravity="center|bottom"
-                            android:layout_marginBottom="16dp"
-                            app:piv_animationType="scale"
-                            app:piv_dynamicCount="true"
-                            app:piv_interactiveAnimation="true"
-                            app:piv_viewPager="@id/vpPhotos" />
-
-                    <!--                    <br.com.hussan.cubosmovies.views.ImageLoadingView-->
-                    <!--                            android:id="@+id/backdrop"-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:fitsSystemWindows="true"-->
-                    <!--                            app:imageLoadingView="@{movie.backdropPath}"-->
-                    <!--                            app:layout_collapseMode="parallax" />-->
-
-                    <!--                    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView-->
-                    <!--                            android:id="@+id/videoMovie"-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:visibility="gone"-->
-                    <!--                            app:autoPlay="false"-->
-                    <!--                            app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                            app:layout_constraintTop_toBottomOf="@+id/txtOverview"-->
-                    <!--                            app:showFullScreenButton="false" />-->
+                            android:layout_height="match_parent"
+                            app:imageLoadingView="@{movie.backdropPath}" />
 
                     <androidx.appcompat.widget.Toolbar
                             android:id="@+id/toolbar"
@@ -169,7 +138,32 @@
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                             tools:text="Matrix Matrix Matrix " />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvVideos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtTrailers"
+                            tools:listitem="@layout/list_item_video" />
 
+                    <TextView
+                            android:id="@+id/txtTrailers"
+                            style="@style/descriptionStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/trailers"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtOverview" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
 

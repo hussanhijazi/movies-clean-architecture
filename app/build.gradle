@@ -52,7 +52,6 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "me.zhanghai.android.materialratingbar:library:$ratingStarVersion"
     implementation "com.romandanylyk:pageindicatorview:$pageIndicatorVersion"
-    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$youtubeVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"

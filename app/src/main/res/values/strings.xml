@@ -9,4 +9,5 @@
     <string name="share_msg">Share movie</string>
     <string name="msg_empty_state">Your search returned no records.</string>
     <string name="msg_error">There was an error, please try again later.</string>
+    <string name="trailers">Trailers</string>
 </resources>

@@ -2,19 +2,23 @@ package br.com.hussan.cubosmovies.ui.moviedetails
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.hussan.cubosmovies.AppNavigator
 import br.com.hussan.cubosmovies.R
 import br.com.hussan.cubosmovies.data.model.MovieView
 import br.com.hussan.cubosmovies.databinding.ActivityMovieDetailsBinding
 import br.com.hussan.cubosmovies.domain.MovieVideos
+import br.com.hussan.cubosmovies.domain.Video
 import br.com.hussan.cubosmovies.extensions.add
 import br.com.hussan.cubosmovies.extensions.scaleDown
 import br.com.hussan.cubosmovies.extensions.scaleUp
+import br.com.hussan.cubosmovies.extensions.show
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +32,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieDetailsBinding
     private val compositeDisposable = CompositeDisposable()
     private val imageAdapter by lazy {
-        ImagesAdapter(this, lifecycle)
+        VideosAdapter(this, ::videoClicked, movie.backdropPath)
     }
     private val movie: MovieView
         get() = intent.getParcelableExtra(AppNavigator.MOVIE)
@@ -50,9 +54,23 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         setupToolbar()
         setupViews()
-        initImageSlider()
-        setImages()
+        setupVideoRecyclerView()
         getMovieVideos()
+    }
+
+    private fun setupVideoRecyclerView() {
+        rvVideos.adapter = imageAdapter
+        rvVideos.apply {
+            setHasFixedSize(true)
+            layoutManager =
+                LinearLayoutManager(
+                    this@MovieDetailsActivity,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
+
+            isNestedScrollingEnabled = false
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -72,17 +90,11 @@ class MovieDetailsActivity : AppCompatActivity() {
             .add(compositeDisposable)
     }
 
-    private fun setImages() {
-        movie.backdropPath?.let {
-            imageAdapter.addItems(listOf(it))
-        }
-    }
-
-    private fun initImageSlider() {
-        vpPhotos.adapter = imageAdapter
-    }
-
     private fun setVideos(videos: MovieVideos?) {
+        if (videos?.results?.isNotEmpty() != false) {
+            rvVideos.show()
+            txtTrailers.show()
+        }
         imageAdapter.addItems(videos?.results ?: return)
     }
 
@@ -118,6 +130,16 @@ class MovieDetailsActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun videoClicked(video: Video) {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.youtube.com/watch?v=${video.key}")
+            )
+        )
+
     }
 
     private fun goToBack() {
