@@ -99,18 +99,18 @@ abstract class ListMoviesFragment : Fragment() {
     private fun showEmptyState() {
         lytEmptystate.show()
         lytError.hide()
-        rvProducts.hide()
+        rvMovies.hide()
     }
 
     private fun showRecyclerViewProducts() {
-        rvProducts.show()
+        rvMovies.show()
         lytEmptystate.hide()
         lytError.hide()
     }
 
     fun showError() {
         lytError.show()
-        rvProducts.hide()
+        rvMovies.hide()
         lytEmptystate.hide()
     }
 
@@ -122,7 +122,7 @@ abstract class ListMoviesFragment : Fragment() {
     }
 
     private fun setupRecyclerViewProducts() {
-        rvProducts.run {
+        rvMovies.run {
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
 

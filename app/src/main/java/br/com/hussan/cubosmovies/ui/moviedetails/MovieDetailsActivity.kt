@@ -1,5 +1,6 @@
 package br.com.hussan.cubosmovies.ui.moviedetails
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -26,11 +27,20 @@ class MovieDetailsActivity : AppCompatActivity() {
     private val viewModel: MovieDetailsViewModel by viewModel()
     private lateinit var binding: ActivityMovieDetailsBinding
     private val compositeDisposable = CompositeDisposable()
-    val imageAdapter by lazy {
+    private val imageAdapter by lazy {
         ImagesAdapter(this, lifecycle)
     }
     private val movie: MovieView
         get() = intent.getParcelableExtra(AppNavigator.MOVIE)
+
+
+    companion object {
+        fun newIntent(context: Context, movie: MovieView): Intent {
+            val intent = Intent(context, MovieDetailsActivity::class.java)
+            intent.putExtra(AppNavigator.MOVIE, movie)
+            return intent
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

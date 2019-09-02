@@ -12,7 +12,9 @@ class MovieCacheImpl(
 ) : MovieCache {
     override fun getMoviesByName(query: String): Single<List<Movie>> {
         return db.movieDao().loadMoviesByName("%${query}%")
-            .map { it.map { mapper.mapFromCached(it) } }
+            .map {
+                it.map { mapper.mapFromCached(it) }
+            }
     }
 
     override fun getMoviesByGenre(genre: Int): Single<List<Movie>> {
