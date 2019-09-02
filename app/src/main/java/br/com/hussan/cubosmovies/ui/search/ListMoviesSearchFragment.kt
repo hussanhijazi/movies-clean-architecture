@@ -42,7 +42,7 @@ class ListMoviesSearchFragment : ListMoviesFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.main_menu, menu)
-        val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
+        val searchView = menu.findItem(R.id.search)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 movieAdapter.setItems(listOf())
