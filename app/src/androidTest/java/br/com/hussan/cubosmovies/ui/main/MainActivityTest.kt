@@ -30,7 +30,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun clickToDetailsActivityWhenHasDiscount() {
+    fun clickToDetailsActivity() {
         Thread.sleep(300)
         onView(allOf(isDisplayed(), withId(R.id.rvMovies)))
             .perform(
@@ -57,7 +57,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun recyclerViewProductsDisplay() {
+    fun recyclerViewMoviesDisplay() {
         onView(allOf(withId(R.id.rvMovies), isCompletelyDisplayed()))
     }
 }

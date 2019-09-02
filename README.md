@@ -6,15 +6,13 @@ The Movie DB API - [https://api.themoviedb.org/3/](URL).
 ## Código
 Estou usando *Clean Architecture* baseada na implementação do Antonio Leiva e da BufferApp. 
 
-Na primeira tela pega os filmes das seguintes gêneros: Ação, Drama, Fantasia e Ficção. No clique no filme, passamos o objeto filme para a tela de detalhes, onde buscamos os trailers do filme e colocamos numa *RecyclerView*.
-
-Além disso temos a busca na *toolbar* onde faz a busca por termos.
+Na primeira tela busca os filmes dos seguintes gêneros: Ação, Drama, Fantasia e Ficção. No clique no filme, passamos o mesmo para a tela de detalhes, onde buscamos os trailers do filme e colocamos numa *RecyclerView*. Além disso temos a busca pelo filme na *toolbar*. 
 
 As requisições de busca por gênero ou termo são salvas localmente, para serem usadas quando o usuário estiver sem internet.
 
 ### Módulos
 #### domain
-Nesse módulo temos os models(*entities*).
+Nesse módulo temos os *models(entities*).
 
 #### app
 Nesse módulo temos as classes *Android* e a UI.
@@ -37,7 +35,7 @@ Criamos o módulo *cache* para não colocar depedência do *Android* no módulo 
 Usamos um *mapper* para que o mapemento da *@Entity* do *Room* no módulo cache para a *entity* da aplicação. Assim evitando de passar *@Entity* onde os módulos que não tem *Android*.
 
 ### Mapper Domain/View
-Como não podemos usar *Parcelable* no *domain*, usamos um *mapper* para passar o objeto filme para a tela de detalhes como Parcelable do Android. 
+Como não podemos usar *Parcelable* no *domain*, usamos um *mapper* para passar o filme para a tela de detalhes como *Parcelable* do *Android*. 
 
 ### Koin
 Usamos o *Koin* para injeção de depêndencias, por achar ele de simples uso e atende a necessidade.
@@ -49,7 +47,7 @@ Usamos o Bitrise.io para integração contínua.
 Temos testes nos módulos: *app*, *cache*, *data*, e *usecases*.
 
 ### app
-Nesse módulo testamos os *ViewModels*
+Nesse módulo testamos os *ViewModels* e alguns testes nas *Activities*.
 
 ### cache
 Nesse módulo testamos a gravação e carregamento dos dados no *Room*.
@@ -69,7 +67,7 @@ Teste de ui: `./scripts/androidTests.sh`
 Rodar lint: `./scripts/lint.sh`
 
 ## Editorconfig
-Temos um .editorconfig para estilo do código.
+Temos um .editorconfig para *code style*.
 
 ## Referências
 * Artigo: https://antonioleiva.com/clean-architecture-android/

@@ -45,7 +45,7 @@ class GetMoviesTest {
     }
 
     @Test
-    fun `Get categories call with error`() {
+    fun `Get movies call with error`() {
         val exception = Exception()
         `when`(repository.getMovies(genre, page, language)).thenReturn(Single.error(exception))
 

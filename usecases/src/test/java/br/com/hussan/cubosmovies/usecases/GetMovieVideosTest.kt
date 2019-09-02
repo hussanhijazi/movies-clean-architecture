@@ -40,7 +40,7 @@ class GetMovieVideosTest {
     }
 
     @Test
-    fun `Get categories call locally with error`() {
+    fun `Get movie videos with error`() {
         val exception = Exception()
         `when`(repository.getMovieVideos(movieId, language)).thenReturn(Single.error(exception))
 
