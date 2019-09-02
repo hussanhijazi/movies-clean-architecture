@@ -6,7 +6,6 @@
     <string name="science_fiction">SciFi</string>
     <string name="movies">Movies</string>
     <string name="search_hint">Search movie…</string>
-    <string name="share">Share</string>
     <string name="share_msg">Share movie</string>
     <string name="msg_empty_state">Your search returned no records.</string>
     <string name="msg_error">There was an error, please try again later.</string>

@@ -2,6 +2,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="detail_backdrop_height">232dp</dimen>
-    <dimen name="card_margin">16dp</dimen>
 
 </resources>
