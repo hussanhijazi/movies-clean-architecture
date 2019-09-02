@@ -55,7 +55,7 @@ ext {
     picassoVersion = '2.71828'
     ratingStarVersion = '1.3.2'
     pageIndicatorVersion = '1.0.3'
-    youtubeVersion = '10.0.4'
+    httpInterceptorVersion = '3.12.0'
 
     jUnitVersion = '4.12'
     runnerVersion = '1.1.2-alpha01'
@@ -63,6 +63,7 @@ ext {
     mockitoVersion = '2.24.5'
     coreTestingVersion = "1.1.1"
     androidXTestVersion = "1.1.0"
+    mockWebserverVersion = "3.13.1"
 
     robolectricVersion = '3.4.2'
 

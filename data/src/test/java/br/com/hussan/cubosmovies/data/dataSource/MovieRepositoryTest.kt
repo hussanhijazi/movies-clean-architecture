@@ -26,11 +26,11 @@ import java.util.concurrent.TimeUnit
 @RunWith(JUnit4::class)
 class MovieRepositoryTest {
 
-    lateinit var repository: MovieDatasource
-    lateinit var api: AppApi
-    lateinit var mockServer: MockWebServer
-    lateinit var gson: Gson
-    lateinit var movieCache: MovieCache
+    private lateinit var repository: MovieDatasource
+    private lateinit var api: AppApi
+    private lateinit var mockServer: MockWebServer
+    private lateinit var gson: Gson
+    private lateinit var movieCache: MovieCache
 
     private val genre = 28
     private val query = "query"
