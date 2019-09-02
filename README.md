@@ -59,6 +59,9 @@ Teste de ui: `./scripts/androidTests.sh`
 ## Lint/Detekt
 Rodar lint: `./scripts/lint.sh`
 
+## Editorconfig
+Temos um .editorconfig para estilo do código.
+
 ## Referências
 * Artigo: https://antonioleiva.com/clean-architecture-android/
 * BufferApp: https://github.com/bufferapp/clean-architecture-components-boilerplate
