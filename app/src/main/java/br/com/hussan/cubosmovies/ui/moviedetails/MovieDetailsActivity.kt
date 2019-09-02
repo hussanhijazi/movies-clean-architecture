@@ -13,6 +13,7 @@ import br.com.hussan.cubosmovies.databinding.ActivityMovieDetailsBinding
 import br.com.hussan.cubosmovies.domain.MovieVideos
 import br.com.hussan.cubosmovies.extensions.add
 import br.com.hussan.cubosmovies.extensions.scaleDown
+import br.com.hussan.cubosmovies.extensions.scaleUp
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -42,7 +43,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         initImageSlider()
         setImages()
         getMovieVideos()
+    }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus)
+            btnShare.scaleUp({})
     }
 
     private fun getMovieVideos() {

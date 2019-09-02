@@ -1,18 +1,20 @@
 package br.com.hussan.cubosmovies.extensions
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityOptionsCompat
+import br.com.hussan.cubosmovies.R
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+
 
 fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) {
     snack(resources.getString(messageRes), length)
@@ -54,23 +56,34 @@ fun View.hide() {
 }
 
 fun View.scaleDown(callback: () -> Unit) {
-    animate().scaleX(0F).scaleY(0F).setDuration(200)
-        .setListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
-                super.onAnimationEnd(animation)
+    val animation = AnimationUtils.loadAnimation(context, R.anim.scale_down)
+    animation.setAnimationListener(
+        object : Animation.AnimationListener {
+            override fun onAnimationRepeat(p0: Animation?) {}
+            override fun onAnimationEnd(p0: Animation?) {
                 callback()
             }
-        }).start()
+
+            override fun onAnimationStart(p0: Animation?) {}
+        }
+    )
+    startAnimation(animation)
+
 }
 
-fun View.scaleUp(callback: () -> Unit) {
-    animate().scaleX(1F).scaleY(1F).setDuration(500)
-        .setListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
-                super.onAnimationEnd(animation)
-                callback()
+fun View.scaleUp(callback: (() -> Unit?)? = null) {
+    val animation = AnimationUtils.loadAnimation(context, R.anim.scale_up)
+    animation.setAnimationListener(
+        object : Animation.AnimationListener {
+            override fun onAnimationRepeat(p0: Animation?) {}
+            override fun onAnimationEnd(p0: Animation?) {
+                callback?.invoke()
             }
-        }).start()
+
+            override fun onAnimationStart(p0: Animation?) {}
+        }
+    )
+    startAnimation(animation)
 }
 
 inline fun <reified T : Activity> Activity.navigate(
