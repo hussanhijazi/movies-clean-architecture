@@ -79,11 +79,13 @@ abstract class ListMoviesFragment : Fragment() {
     private fun showEmptyState() {
         lytEmptystate.show()
         rvMovies.hide()
+        swipeRefresh.isEnabled = false
     }
 
     private fun showRecyclerViewProducts() {
         rvMovies.show()
         lytEmptystate.hide()
+        swipeRefresh.isEnabled = true
     }
 
     fun showError() {
